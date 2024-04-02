@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:app_listacompras/view/recuperasenha.dart';
 import 'package:flutter/material.dart';
 
@@ -109,7 +111,7 @@ class _LoginState extends State<Login> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
                   foregroundColor: Colors.white,
-                  minimumSize: const Size(200, 50),
+                  minimumSize: Size(200, 50),
                   shadowColor: Colors.deepPurple,
                   textStyle: const TextStyle(fontSize: 20),
                 ),
@@ -127,11 +129,33 @@ class _LoginState extends State<Login> {
                   }
                   Navigator.pushNamed(
                     context,
-                    't2',
+                    't3',
                   );
                 },
                 child: const Text('Login'),
-              )
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Nao tem conta? '),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        't2',
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                      foregroundColor: Color.fromARGB(210, 83, 51, 158),
+                    ),
+                    child: Text('Cadastre-se aqui',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
