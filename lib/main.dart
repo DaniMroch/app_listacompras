@@ -3,6 +3,8 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'view/login.dart';
 import 'view/cadastro.dart';
+import 'view/menu.dart';
+import 'view/recuperasenha.dart';
 
 void main() {
   runApp(
@@ -24,9 +26,10 @@ class MainApp extends StatelessWidget {
       //rotas de navegacao
       initialRoute: 't1',
       routes: {
-        //home: Login(),
         't1': (context) => Login(),
         't2': (context) => Cadastro(),
+        't3': (context) => RecuperaSenha(),
+        't4': (context) => Menu(),
       },
     );
   }

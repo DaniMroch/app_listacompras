@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:app_listacompras/view/recuperasenha.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -79,8 +78,8 @@ class _LoginState extends State<Login> {
                     return 'Informe a Senha';
                   } else if (value.isEmpty) {
                     return 'Informe a Senha';
-                  } else if (value.length < 8) {
-                    return 'Senha deve conter no min 8 digitos';
+                  } else if (value.length < 6) {
+                    return 'Senha deve conter no min 6 digitos';
                   }
                   return null;
                 },
@@ -92,12 +91,7 @@ class _LoginState extends State<Login> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RecuperaSenha(),
-                      ),
-                    );
+                    Navigator.pushNamed(context, 't3');
                   },
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.black,
@@ -129,7 +123,7 @@ class _LoginState extends State<Login> {
                   }
                   Navigator.pushNamed(
                     context,
-                    't3',
+                    't4',
                   );
                 },
                 child: const Text('Login'),

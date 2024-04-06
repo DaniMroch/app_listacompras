@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 class RecuperaSenha extends StatelessWidget {
+  //var txtEmail = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +53,16 @@ class RecuperaSenha extends StatelessWidget {
                       labelText: 'E-mail',
                       labelStyle: TextStyle(color: Colors.black38),
                     ),
+
+                    // validacao do email
+                    validator: (value) {
+                      if (value == null) {
+                        return 'Informe o E-mail';
+                      } else if (value.isEmpty) {
+                        return 'Informe o E-mail';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(height: 20),
 

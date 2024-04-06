@@ -21,3 +21,4 @@ flutter:
   assets:
     - lib/images/perfil.jpg
     - lib/images/senha.jpg
+    - lib/images/tenda.png
