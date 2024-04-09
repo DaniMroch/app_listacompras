@@ -6,10 +6,10 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      //appBar: AppBar(),
       body: Container(
         color: Colors.white,
-        padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
+        padding: EdgeInsets.fromLTRB(100, 100, 50, 50),
         child: Column(
           children: [
             //imagem
@@ -31,7 +31,7 @@ class Menu extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                  't',
+                  't6',
                 );
               },
               child: const Text('Criar Lista'),
@@ -73,7 +73,7 @@ class Menu extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                  't',
+                  't5',
                 );
               },
               child: const Text('Sobre'),

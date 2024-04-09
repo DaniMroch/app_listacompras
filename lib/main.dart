@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
+import 'package:app_listacompras/view/criarlista.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'view/login.dart';
 import 'view/cadastro.dart';
 import 'view/menu.dart';
 import 'view/recuperasenha.dart';
+import 'view/sobre.dart';
 
 void main() {
   runApp(
@@ -30,6 +32,8 @@ class MainApp extends StatelessWidget {
         't2': (context) => Cadastro(),
         't3': (context) => RecuperaSenha(),
         't4': (context) => Menu(),
+        't5': (context) => Sobre(),
+        't6': (context) => CriarLista(),
       },
     );
   }

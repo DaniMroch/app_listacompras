@@ -19,9 +19,9 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      //appBar: AppBar(),
       body: Container(
-        padding: const EdgeInsets.fromLTRB(50, 50, 50, 100),
+        padding: const EdgeInsets.fromLTRB(50, 100, 50, 100),
         color: Colors.white,
         child: Form(
           key: formKey,
@@ -115,16 +115,16 @@ class _LoginState extends State<Login> {
                     setState(() {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Efetuando Login ...'),
+                          content: Text('Login efetuado'),
                           duration: Duration(seconds: 3),
                         ),
                       );
                     });
-                  }
-                  Navigator.pushNamed(
-                    context,
-                    't4',
-                  );
+                    Navigator.pushNamed(
+                      context,
+                      't4',
+                    );
+                  } //end if
                 },
                 child: const Text('Login'),
               ),
