@@ -116,7 +116,7 @@ class _LoginState extends State<Login> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Login efetuado'),
-                          duration: Duration(seconds: 3),
+                          duration: Duration(seconds: 2),
                         ),
                       );
                     });

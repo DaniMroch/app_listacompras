@@ -36,28 +36,6 @@ class Menu extends StatelessWidget {
               },
               child: const Text('Criar Lista'),
             ),
-
-            //botao para gerenciar lista
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                foregroundColor: Colors.white,
-                minimumSize: Size(200, 50),
-                shadowColor: Colors.deepPurple,
-                textStyle: const TextStyle(fontSize: 20),
-              ),
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  't',
-                );
-              },
-              child: const Text('Gerenciar Lista'),
-            ),
-
             //botao sobre
             SizedBox(
               height: 20,

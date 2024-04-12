@@ -2,7 +2,10 @@
 import 'package:flutter/material.dart';
 
 class Cadastro extends StatelessWidget {
-  //var formkey2 = GlobalKey<FormState>();
+  Cadastro({super.key});
+  final formkey3 = GlobalKey<FormState>();
+  final txtEmail = TextEditingController();
+  final txtSenha = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +19,7 @@ class Cadastro extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.fromLTRB(50, 50, 50, 100),
         child: Form(
-          //key: formkey2,
+          key: formkey3,
           child: Column(
             children: [
               Text(
@@ -32,7 +35,7 @@ class Cadastro extends StatelessWidget {
               ),
               // campo para informar o  email
               TextFormField(
-                //controller: txtEmail,
+                controller: txtEmail,
                 style: const TextStyle(fontSize: 20),
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
@@ -57,7 +60,7 @@ class Cadastro extends StatelessWidget {
               ),
               // campo para criar a senha e confirmar a senha criada
               TextFormField(
-                //controller: txtSenha,
+                controller: txtSenha,
                 style: const TextStyle(fontSize: 20),
                 keyboardType: TextInputType.text,
                 obscureText: true,
@@ -122,6 +125,7 @@ class Cadastro extends StatelessWidget {
                 ),
                 onPressed: () {
                   // chamar os validadores dos campos de texto
+                  if (formkey3.currentState!.validate()) {}
                   Navigator.pushNamed(
                     context,
                     't',

@@ -3,7 +3,10 @@
 import 'package:flutter/material.dart';
 
 class RecuperaSenha extends StatelessWidget {
-  //var txtEmail = TextEditingController();
+  RecuperaSenha({super.key});
+  final txtEmail = TextEditingController();
+  final formKey2 = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +21,7 @@ class RecuperaSenha extends StatelessWidget {
             color: Colors.white,
             padding: EdgeInsets.fromLTRB(45, 50, 50, 100),
             child: Form(
+              key: formKey2,
               child: Column(
                 children: [
                   //Imagem para recuperar senha
@@ -49,6 +53,7 @@ class RecuperaSenha extends StatelessWidget {
                   ),
                   // campo para inserir email para recuperar a senha
                   TextFormField(
+                    controller: txtEmail,
                     decoration: InputDecoration(
                       labelText: 'E-mail',
                       labelStyle: TextStyle(color: Colors.black38),
@@ -75,7 +80,9 @@ class RecuperaSenha extends StatelessWidget {
                       shadowColor: Colors.deepPurple,
                       textStyle: const TextStyle(fontSize: 20),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (formKey2.currentState!.validate()) {}
+                    },
                     child: Text('Enviar'),
                   ),
                 ],

@@ -2,55 +2,49 @@
 
 import 'package:flutter/material.dart';
 
-import 'telaitens.dart';
+class Itens extends StatefulWidget {
+  final String listName;
 
-class ListaDeCompras extends StatefulWidget {
+  Itens({required this.listName});
+
   @override
-  ListaDeComprasState createState() => ListaDeComprasState();
+  ItensState createState() => ItensState();
 }
 
-class ListaDeComprasState extends State<ListaDeCompras> {
-  List<String> listas = [];
+class ItensState extends State<Itens> {
+  List<String> itens = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(widget.listName),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: Colors.black38,
           onPressed: () => Navigator.pop(context, false),
         ),
-        title: Text('Lista de Compras'),
       ),
       body: Column(
         children: [
-          //aparecer as listas criadas na tela
           Expanded(
             child: ListView.builder(
-              itemCount: listas.length,
+              itemCount: itens.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(listas[index]),
+                  title: Text(itens[index]),
                   leading: IconButton(
                     icon: Icon(Icons.edit),
                     onPressed: () {
-                      editarLista(index);
-                    },
-                  ), // Adicione o ícone aqui
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () {
-                      deletarLista(index);
+                      editarItem(index);
                     },
                   ),
-                  onTap: () {
-                    Navigator.push(
-                      //ir para a tela de itens
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Itens(listName: listas[index]),
-                      ),
-                    );
+                  trailing: Checkbox(
+                    value: true,
+                    onChanged: (value) {},
+                  ),
+                  onLongPress: () {
+                    deletarItem(index);
                   },
                 );
               },
@@ -67,9 +61,9 @@ class ListaDeComprasState extends State<ListaDeCompras> {
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
-                adicionarLista();
+                adicionarItem();
               },
-              child: Text('Criar Nova Lista'),
+              child: Text('Adicionar Item'),
             ),
           ),
         ],
@@ -77,28 +71,28 @@ class ListaDeComprasState extends State<ListaDeCompras> {
     );
   }
 
-  void adicionarLista() {
+  void adicionarItem() {
     showDialog(
       context: context,
       builder: (context) {
-        String novaLista = '';
+        String newItem = '';
         return AlertDialog(
-          title: Text('Nova Lista de Compras'),
+          title: Text('Novo Item'),
           content: TextField(
             onChanged: (value) {
-              novaLista = value;
+              newItem = value;
             },
-            decoration: InputDecoration(hintText: 'Nome da Lista'),
+            decoration: InputDecoration(hintText: 'Nome do Item'),
           ),
           actions: [
             TextButton(
               onPressed: () {
                 setState(() {
-                  listas.add(novaLista);
+                  itens.add(newItem);
                 });
                 Navigator.pop(context);
               },
-              child: Text('Criar'),
+              child: Text('Adicionar'),
             ),
           ],
         );
@@ -106,18 +100,18 @@ class ListaDeComprasState extends State<ListaDeCompras> {
     );
   }
 
-  void deletarLista(int index) {
+  void deletarItem(int index) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Excluir Lista'),
-          content: Text('Deseja excluir a lista "${listas[index]}"?'),
+          title: Text('Excluir Item'),
+          content: Text('Deseja excluir o item "${itens[index]}"?'),
           actions: [
             TextButton(
               onPressed: () {
                 setState(() {
-                  listas.removeAt(index);
+                  itens.removeAt(index);
                 });
                 Navigator.pop(context);
               },
@@ -135,16 +129,16 @@ class ListaDeComprasState extends State<ListaDeCompras> {
     );
   }
 
-  void editarLista(int index) {
+  void editarItem(int index) {
     showDialog(
       context: context,
       builder: (context) {
-        String listaEditada = listas[index];
+        String itemEditado = itens[index];
         return AlertDialog(
           title: Text('Editar Item'),
           content: TextField(
             onChanged: (value) {
-              listaEditada = value;
+              itemEditado = value;
             },
             decoration: InputDecoration(hintText: 'Nome do Item'),
           ),
@@ -152,7 +146,7 @@ class ListaDeComprasState extends State<ListaDeCompras> {
             TextButton(
               onPressed: () {
                 setState(() {
-                  listas[index] = listaEditada;
+                  itens[index] = itemEditado;
                 });
                 Navigator.pop(context);
               },
