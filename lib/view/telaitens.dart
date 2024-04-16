@@ -12,6 +12,7 @@ class Itens extends StatefulWidget {
 }
 
 class ItensState extends State<Itens> {
+  bool check = false; // estado inicial do checkbox
   List<String> itens = [];
 
   @override
@@ -40,8 +41,16 @@ class ItensState extends State<Itens> {
                     },
                   ),
                   trailing: Checkbox(
-                    value: true,
-                    onChanged: (value) {},
+                    value: check,
+                    onChanged: (newValue) {
+                      setState(() {
+                        if (check) {
+                          check = false;
+                        } else {
+                          check = true;
+                        }
+                      });
+                    },
                   ),
                   onLongPress: () {
                     deletarItem(index);
