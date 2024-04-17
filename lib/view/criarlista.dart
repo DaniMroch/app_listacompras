@@ -30,7 +30,9 @@ class ListaDeComprasState extends State<ListaDeCompras> {
               itemCount: listas.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(listas[index]),
+                  title: Text(listas[index],
+                      style:
+                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
                   leading: IconButton(
                     icon: Icon(Icons.edit),
                     onPressed: () {

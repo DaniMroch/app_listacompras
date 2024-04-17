@@ -13,13 +13,17 @@ class Itens extends StatefulWidget {
 
 class ItensState extends State<Itens> {
   bool check = false; // estado inicial do checkbox
-  List<String> itens = [];
+  List<Map<String, dynamic>> itens =
+      []; // Modifica a lista para armazenar objetos com nome e quantidade
+
+  //List<String> itens = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.listName),
+        title: Text(widget.listName,
+            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: Colors.black38,
@@ -33,7 +37,8 @@ class ItensState extends State<Itens> {
               itemCount: itens.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(itens[index]),
+                  title: Text(
+                      '${itens[index]['nome']} (${itens[index]['quantidade']})'), // Exibe o nome seguido da quantidade
                   leading: IconButton(
                     icon: Icon(Icons.edit),
                     onPressed: () {
@@ -57,6 +62,13 @@ class ItensState extends State<Itens> {
                   },
                 );
               },
+            ),
+          ),
+          Text(
+            "Pressione o item para Excluir",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
             ),
           ),
           Padding(
@@ -84,20 +96,35 @@ class ItensState extends State<Itens> {
     showDialog(
       context: context,
       builder: (context) {
-        String newItem = '';
+        String novoItem = '';
+        int quantidade = 0; // Inicializa a quantidade com 0
         return AlertDialog(
           title: Text('Novo Item'),
-          content: TextField(
-            onChanged: (value) {
-              newItem = value;
-            },
-            decoration: InputDecoration(hintText: 'Nome do Item'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                onChanged: (value) {
+                  novoItem = value;
+                },
+                decoration: InputDecoration(hintText: 'Nome do Item'),
+              ),
+              TextField(
+                onChanged: (value) {
+                  quantidade = (int.tryParse(value) ?? 0);
+                  // Se a conversão falhar, mantém a quantidade como 0
+                },
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(hintText: 'Quantidade'),
+              ),
+            ],
           ),
           actions: [
             TextButton(
               onPressed: () {
                 setState(() {
-                  itens.add(newItem);
+                  // Adiciona o novo item com sua quantidade à lista
+                  itens.add({'nome': novoItem, 'quantidade': quantidade});
                 });
                 Navigator.pop(context);
               },
@@ -115,7 +142,8 @@ class ItensState extends State<Itens> {
       builder: (context) {
         return AlertDialog(
           title: Text('Excluir Item'),
-          content: Text('Deseja excluir o item "${itens[index]}"?'),
+          content: Text(
+              'Deseja excluir o item "${itens[index]['nome']}"?'), // Acessa o nome do item no índice especificado
           actions: [
             TextButton(
               onPressed: () {
@@ -139,23 +167,41 @@ class ItensState extends State<Itens> {
   }
 
   void editarItem(int index) {
+    String itemEditado =
+        itens[index]['nome']; // Obtém o nome do item no índice especificado
+    int quantidadeEditada = itens[index]
+        ['quantidade']; // Obtém a quantidade do item no índice especificado
+
     showDialog(
       context: context,
       builder: (context) {
-        String itemEditado = itens[index];
         return AlertDialog(
           title: Text('Editar Item'),
-          content: TextField(
-            onChanged: (value) {
-              itemEditado = value;
-            },
-            decoration: InputDecoration(hintText: 'Nome do Item'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                onChanged: (value) {
+                  itemEditado = value;
+                },
+                decoration: InputDecoration(hintText: 'Novo Nome do Item'),
+              ),
+              TextField(
+                onChanged: (value) {
+                  quantidadeEditada = int.tryParse(value) ?? 0;
+                },
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(hintText: 'Nova Quantidade'),
+              ),
+            ],
           ),
           actions: [
             TextButton(
               onPressed: () {
                 setState(() {
-                  itens[index] = itemEditado;
+                  // Atualiza o nome e a quantidade do item no índice especificado
+                  itens[index]['nome'] = itemEditado;
+                  itens[index]['quantidade'] = quantidadeEditada;
                 });
                 Navigator.pop(context);
               },
